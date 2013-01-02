@@ -48,11 +48,11 @@ public class ClientUtil
         {
             client.setupServer();
             client.authenticate();
+
             accessToken = client.GetAccessToken("devops@alfresco.com", "password");
 
             System.out.println("Access Token: " + accessToken);
         }
-        
         catch (Exception e)
         {
             // TODO Auto-generated catch block
@@ -70,8 +70,6 @@ public class ClientUtil
                 e.printStackTrace();
             }
         }
-        
-
     }
 
 
