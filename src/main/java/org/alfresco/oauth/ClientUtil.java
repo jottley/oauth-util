@@ -15,9 +15,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.social.alfresco.api.Alfresco;
 import org.springframework.social.alfresco.connect.AlfrescoConnectionFactory;
+import org.alfresco.oauth.AuthUrl;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Parameters;
-import org.alfresco.oauth.AuthUrl;
 
 
 /**
@@ -26,14 +26,11 @@ import org.alfresco.oauth.AuthUrl;
  */
 public class ClientUtil
 {
-    private static final String              CONSUMER_KEY    = "l7xx16247a05ab7b46968625d4dda1f45aeb";
-    private static final String              CONSUMER_SECRET = "c7d189f23aaf432a8b7aadd346e35101";
+    private static final String              CONSUMER_KEY    = "32527f06-1acd-488c-a844-036629e91127";
+    private static final String              CONSUMER_SECRET = "990b6e41-2e91-490b-824b-4ed2cee10cd8";
 
-    private static final String              REDIRECT_URI    = "http://localhost:9876";
+    private static final String              REDIRECT_URI    = "http://localhost:8181/oauthsample/mycallback.html";
     private static final String              STATE           = "test";
-
-    private static final String              USERNAME        = "";
-    private static final String              PASSWORD        = "";
 
     private static Server                    server;
     private static AlfrescoConnectionFactory connectionFactory;
@@ -51,11 +48,11 @@ public class ClientUtil
         {
             client.setupServer();
             client.authenticate();
-            accessToken = client.GetAccessToken(USERNAME, PASSWORD);
+
+            accessToken = client.GetAccessToken("devops@alfresco.com", "password");
 
             System.out.println("Access Token: " + accessToken);
         }
-
         catch (Exception e)
         {
             // TODO Auto-generated catch block
@@ -73,15 +70,13 @@ public class ClientUtil
                 e.printStackTrace();
             }
         }
-
-
     }
 
 
     protected void setupServer()
         throws Exception
     {
-        server = new Server(9876);
+        server = new Server(8181);
         server.setHandler(new RewriteHandler());
         server.start();
     }
